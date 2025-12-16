@@ -140,7 +140,7 @@ vite.config.ts.timestamp-*
 
 
 .venv/
-
+package-lock.json
 
 # Logs
 logs
