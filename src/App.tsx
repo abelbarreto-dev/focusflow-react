@@ -7,7 +7,7 @@ import { Heading } from "./components/Heading";
 export function App() {
     return (
         <Fragment>
-            <Heading />
+            <Heading>Hello World!</Heading>
             <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui
                 odio commodi atque consequuntur animi illum tempore, voluptatem
