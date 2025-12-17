@@ -1,6 +1,7 @@
 import { Fragment } from "react/jsx-runtime";
 
-import "./App.css"; // implements global css
+import "./styles/theme.css";
+import "./styles/global.css";
 
 export function App() {
     return (
