@@ -2,9 +2,9 @@ import { Fragment } from "react/jsx-runtime";
 
 import "./styles/theme.css";
 import "./styles/global.css";
-import { Heading } from "./components/Heading";
 import { TimerIcon } from "lucide-react";
 import { Container } from "./components/Container";
+import { Heading } from "./components/Heading";
 
 export function App() {
     return (
