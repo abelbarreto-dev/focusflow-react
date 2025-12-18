@@ -6,6 +6,7 @@ import { CountDown } from "./components/CountDown";
 
 import "./styles/theme.css";
 import "./styles/global.css"
+import { Form } from "./components/Form";
 
 export function App() {
     return (
@@ -21,6 +22,10 @@ export function App() {
             <CountDown>
                 00:00
             </CountDown>
+
+            <Container>
+                <Form />
+            </Container>
         </Fragment>
     );
 }
