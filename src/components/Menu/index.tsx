@@ -5,7 +5,7 @@ import {
     SettingsIcon,
     SunIcon,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "./styles.module.css";
 
@@ -14,16 +14,19 @@ type Themes = "dark" | "light";
 export const Menu = () => {
     const [theme, setTheme] = useState<Themes>("dark");
 
+    useEffect(() => {
+        document.documentElement.setAttribute("data-theme", theme);
+
+        // prevent unstaged data from last running
+        return () => {};
+    }, [theme]);
+
     const handleChangeTheme = (
         event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     ) => {
         event.preventDefault();
 
-        const colorTheme = theme === "dark" ? "light" : "dark";
-
-        setTheme(colorTheme);
-
-        document.documentElement.setAttribute("data-theme", colorTheme);
+        setTheme(color => (color === "dark" ? "light" : "dark"));
     };
 
     return (
