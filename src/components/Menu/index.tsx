@@ -12,13 +12,17 @@ import styles from "./styles.module.css";
 type Themes = "dark" | "light";
 
 export const Menu = () => {
-    const [theme, setTheme] = useState<Themes>("dark");
+    const [theme, setTheme] = useState<Themes>(() => {
+        const storageTheme = (localStorage.getItem("data-theme") ||
+            "dark") as Themes;
+        return storageTheme;
+    });
 
     useEffect(() => {
         document.documentElement.setAttribute("data-theme", theme);
 
-        // prevent unstaged data from last running
-        return () => {};
+        // store to local browser "db"
+        localStorage.setItem("data-theme", theme);
     }, [theme]);
 
     const handleChangeTheme = (
@@ -27,6 +31,11 @@ export const Menu = () => {
         event.preventDefault();
 
         setTheme(color => (color === "dark" ? "light" : "dark"));
+    };
+
+    const nextThemeIcon = {
+        dark: <SunIcon />,
+        light: <MoonIcon />
     };
 
     return (
@@ -49,7 +58,7 @@ export const Menu = () => {
                 title="Mudar Tema"
                 onClick={handleChangeTheme}
             >
-                {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+                {nextThemeIcon[theme]}
             </a>
         </nav>
     );
