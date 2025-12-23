@@ -6,8 +6,12 @@ import { InputText } from "../InputText";
 import styles from "./styles.module.css";
 
 export const Form = () => {
+    const handleStartPomodoro = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+    };
+
     return (
-        <form action="" className={styles.form}>
+        <form onSubmit={handleStartPomodoro} action="POST" className={styles.form}>
             <div className={styles.form_row}>
                 <InputText id="task-name" labelText="Tarefa:" />
             </div>
