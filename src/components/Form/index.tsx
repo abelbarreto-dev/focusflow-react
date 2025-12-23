@@ -2,19 +2,25 @@ import { PlayCircleIcon } from "lucide-react";
 import { Button } from "../Button";
 import { Cycle } from "../Cycle";
 import { InputText } from "../InputText";
+import type { TaskStateModel } from "../../models/TaskStateModel";
 import styles from "./styles.module.css";
 
-export const Form = () => {
+type FormProps = {
+    state: TaskStateModel;
+    setState: (state: TaskStateModel) => void;
+};
+
+export const Form = ({ state, setState }: FormProps) => {
     return (
         <form action="" className={styles.form}>
             <div className={styles.form_row}>
-                <InputText id="task-name" labelText="Tarefa:"/>
+                <InputText id="task-name" labelText="Tarefa:" />
             </div>
 
             <div className={styles.form_row}>
                 <p>
                     Nesse ciclo <strong>descanse</strong> por{" "}
-                    <strong>5 min.</strong>
+                    <strong>{state.config.shortBreakTime} min.</strong>
                 </p>
             </div>
 
@@ -23,7 +29,7 @@ export const Form = () => {
             </div>
 
             <div className={styles.form_row}>
-                <Button id="form-btn" icon={<PlayCircleIcon />}/>
+                <Button id="form-btn" icon={<PlayCircleIcon />} />
             </div>
         </form>
     );

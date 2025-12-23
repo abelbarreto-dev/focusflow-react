@@ -17,7 +17,7 @@ export const Home = (
             <CountDown>{state.formatedSecondsRemaining}</CountDown>
 
             <Container>
-                <Form />
+                <Form {...{state, setState}} />
             </Container>
         </PageTemplate>
     );
