@@ -4,13 +4,16 @@ import { Cycle } from "../Cycle";
 import { InputText } from "../InputText";
 import { useRef } from "react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
+import { getNextCycle } from "../../utils/getNextCycle";
 import type { TaskModel } from "../../models/TaskModel";
 
 import styles from "./styles.module.css";
 
 export const Form = () => {
-    const { setState } = useTaskContext();
+    const { state, setState } = useTaskContext();
     const taskNameInput = useRef<HTMLInputElement>(null);
+
+    const nextCycle = getNextCycle(state.currentCycle);
 
     const handleStartPomodoro = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -42,7 +45,7 @@ export const Form = () => {
                 ...prev,
                 config: { ...prev.config },
                 activeTask: taskModel,
-                currentCycle: 1, // to chekc
+                currentCycle: nextCycle,
                 secondsReamaining: secondsReamaining, // to check
                 formatedSecondsRemaining: "00:00", // to check
                 tasks: [...prev.tasks, taskModel],
