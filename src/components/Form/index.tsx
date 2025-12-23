@@ -9,6 +9,7 @@ import { getNextCycleType } from "../../utils/getNextCycleType";
 import type { TaskModel } from "../../models/TaskModel";
 
 import styles from "./styles.module.css";
+import { getTimeFormated } from "../../utils/getTimeFormated";
 
 export const Form = () => {
     const { state, setState } = useTaskContext();
@@ -49,7 +50,7 @@ export const Form = () => {
                 activeTask: taskModel,
                 currentCycle: nextCycle,
                 secondsReamaining: secondsReamaining, // to check
-                formatedSecondsRemaining: "00:00", // to check
+                formatedSecondsRemaining: getTimeFormated(secondsReamaining),
                 tasks: [...prev.tasks, taskModel],
             };
         });
