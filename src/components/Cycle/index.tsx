@@ -1,16 +1,16 @@
 import styles from "./styles.module.css";
 
 type CycleTypes = {
-    typeCycle: "play" | "rest" | "long-rest";
+    typeCycle: "workTime" | "shortBreakTime" | "longBreakTime";
 }
 
 export const Cycle = (
     { typeCycle }: CycleTypes
 ) => {
     const color = {
-        "play": styles.play,
-        "rest": styles.rest,
-        "long-rest": styles.long_rest
+        "workTime": styles.play,
+        "shortBreakTime": styles.rest,
+        "longBreakTime": styles.long_rest
     }[typeCycle];
 
     return (

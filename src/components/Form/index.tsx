@@ -5,6 +5,7 @@ import { InputText } from "../InputText";
 import { useRef } from "react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { getNextCycle } from "../../utils/getNextCycle";
+import { getNextCycleType } from "../../utils/getNextCycleType";
 import type { TaskModel } from "../../models/TaskModel";
 
 import styles from "./styles.module.css";
@@ -14,6 +15,7 @@ export const Form = () => {
     const taskNameInput = useRef<HTMLInputElement>(null);
 
     const nextCycle = getNextCycle(state.currentCycle);
+    const nextCycleType = getNextCycleType(nextCycle);
 
     const handleStartPomodoro = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -34,7 +36,7 @@ export const Form = () => {
             duration: 1,
             completeDate: null,
             interruptDate: null,
-            type: "workTime",
+            type: nextCycleType,
             status: "Iniciado",
         };
 
@@ -75,7 +77,7 @@ export const Form = () => {
             </div>
 
             <div className={styles.form_row}>
-                <Cycle typeCycle="long-rest" />
+                <Cycle typeCycle="longBreakTime" />
             </div>
 
             <div className={styles.form_row}>
