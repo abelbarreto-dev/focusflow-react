@@ -1,9 +1,8 @@
+import { useTaskContext } from "../../contexts/TaskContext";
 import styles from "./styles.module.css";
 
-type CountDownProps = {
-    children: React.ReactNode;
-};
+export const CountDown = () => {
+    const { state } = useTaskContext();
 
-export const CountDown = ({ children }: CountDownProps) => (
-    <h1 className={styles.count_down}>{children}</h1>
-);
+    return <h1 className={styles.count_down}>{state.formatedSecondsRemaining}</h1>;
+};
