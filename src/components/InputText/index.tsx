@@ -1,3 +1,4 @@
+import type { Ref } from "react";
 import styles from "./styles.module.css";
 
 type InputTextProps = {
@@ -5,11 +6,12 @@ type InputTextProps = {
     labelText: string;
     disabled?: boolean;
     required?: boolean;
+    ref?: Ref<HTMLInputElement>;
     value?: string;
     setValue?: (value?: string) => void;
 };
 
-export const InputText = ({ id, labelText, disabled, required, value, setValue }: InputTextProps) => {
+export const InputText = ({ id, labelText, disabled, required, value, setValue, ref }: InputTextProps) => {
     return (
         <>
             <label htmlFor={id}>{labelText}</label>
@@ -20,6 +22,7 @@ export const InputText = ({ id, labelText, disabled, required, value, setValue }
                 type="text"
                 value={value}
                 onChange={(e) => setValue && setValue(e.target.value || undefined)}
+                ref={ref}
                 disabled={disabled}
                 required={required}
             />
