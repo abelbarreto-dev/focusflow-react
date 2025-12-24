@@ -7,10 +7,10 @@ import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { getNextCycle } from "../../utils/getNextCycle";
 import { getNextCycleType } from "../../utils/getNextCycleType";
 import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
+import { Tips } from "../Tips";
 import type { TaskModel } from "../../models/TaskModel";
 
 import styles from "./styles.module.css";
-import { Tips } from "../Tips";
 
 export const Form = () => {
     const { state, dispatch } = useTaskContext();
