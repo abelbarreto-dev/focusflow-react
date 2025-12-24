@@ -63,6 +63,12 @@ export const Form = () => {
                 activeTask: null,
                 secondsReamaining: 0,
                 formatedSecondsRemaining: "00:00",
+                tasks: prev.tasks.map(task => {
+                    if (task.id === prev.activeTask?.id)
+                        return { ...task, interruptDate: Date.now() };
+
+                    return task;
+                }),
             };
         });
     };
