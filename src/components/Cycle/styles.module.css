@@ -18,14 +18,14 @@
     border-radius: 1rem;
 }
 
-.work_time {
+.workTime {
     background: var(--warning);
 }
 
-.rest_time {
+.shortBreakTime {
     background: var(--primary);
 }
 
-.long_rest_time {
+.longBreakTime {
     background: var(--info);
 }

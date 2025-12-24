@@ -77,9 +77,11 @@ export const Form = () => {
                 </p>
             </div>
 
-            <div className={styles.form_row}>
-                <Cycle />
-            </div>
+            {state.currentCycle !== 0 && (
+                <div className={styles.form_row}>
+                    <Cycle />
+                </div>
+            )}
 
             <div className={styles.form_row}>
                 <Button id="form-btn" icon={<PlayCircleIcon />} />
