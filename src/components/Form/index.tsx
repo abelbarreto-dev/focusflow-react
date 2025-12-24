@@ -6,13 +6,13 @@ import { useRef } from "react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { getNextCycle } from "../../utils/getNextCycle";
 import { getNextCycleType } from "../../utils/getNextCycleType";
+import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
 import type { TaskModel } from "../../models/TaskModel";
 
 import styles from "./styles.module.css";
-import { getTimeFormated } from "../../utils/getTimeFormated";
 
 export const Form = () => {
-    const { state, setState } = useTaskContext();
+    const { state, dispatch } = useTaskContext();
     const taskNameInput = useRef<HTMLInputElement>(null);
 
     const nextCycle = getNextCycle(state.currentCycle);
@@ -41,35 +41,15 @@ export const Form = () => {
             status: "Iniciado",
         };
 
-        const secondsReamaining = taskModel.duration * 60;
-
-        setState(prev => {
-            return {
-                ...prev,
-                config: { ...prev.config },
-                activeTask: taskModel,
-                currentCycle: nextCycle,
-                secondsReamaining: secondsReamaining,
-                formatedSecondsRemaining: getTimeFormated(secondsReamaining),
-                tasks: [...prev.tasks, taskModel],
-            };
+        dispatch({
+            type: TaskActionTypes.START_TASK,
+            payload: taskModel,
         });
     };
 
     const handleStopPomodoro = () => {
-        setState(prev => {
-            return {
-                ...prev,
-                activeTask: null,
-                secondsReamaining: 0,
-                formatedSecondsRemaining: "00:00",
-                tasks: prev.tasks.map(task => {
-                    if (task.id === prev.activeTask?.id)
-                        return { ...task, interruptDate: Date.now() };
-
-                    return task;
-                }),
-            };
+        dispatch({
+            type: TaskActionTypes.INTERRUPT_TASK,
         });
     };
 
