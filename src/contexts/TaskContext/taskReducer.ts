@@ -28,12 +28,34 @@ export const taskReducer = (
                 activeTask: null,
                 secondsReamaining: 0,
                 formatedSecondsRemaining: "00:00",
-                tasks: state.tasks.map((task) => {
+                tasks: state.tasks.map(task => {
                     if (task.id === state.activeTask?.id)
                         task.interruptDate = Date.now();
                     return task;
                 }),
-            }
+            };
+        }
+        case TaskActionTypes.THE_FINAL_COUNT_DOWN: {
+            return {
+                ...state,
+                secondsReamaining: action.payload.secondsReamaining,
+                formatedSecondsRemaining: getTimeFormated(
+                    action.payload.secondsReamaining,
+                ),
+            };
+        }
+        case TaskActionTypes.COMPLETE_TASK: {
+            return {
+                ...state,
+                activeTask: null,
+                secondsReamaining: 0,
+                formatedSecondsRemaining: "00:00",
+                tasks: state.tasks.map(task => {
+                    if (task.id === state.activeTask?.id)
+                        task.completeDate = Date.now();
+                    return task;
+                }),
+            };
         }
         default:
             return { ...state };

@@ -1,3 +1,5 @@
+import type { TaskStateModel } from "../models/TaskStateModel";
+
 let instance: TimerWorkerSingleton | null = null;
 
 export class TimerWorkerSingleton {
@@ -15,7 +17,7 @@ export class TimerWorkerSingleton {
         return instance;
     }
 
-    postMessage(message: any) {
+    postMessage(message: TaskStateModel) {
         this.worker.postMessage(message);
     }
 
