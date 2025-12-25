@@ -6,7 +6,7 @@ import { PageTemplate } from "../../templates/PageTemplate";
 export const Home = () => {
     return (
         <PageTemplate>
-            <CountDown>00:00</CountDown>
+            <CountDown />
 
             <Container>
                 <Form />

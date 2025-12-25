@@ -8,6 +8,7 @@ import {
 import { useEffect, useState } from "react";
 
 import styles from "./styles.module.css";
+import { Link } from "react-router";
 
 type Themes = "dark" | "light";
 
@@ -40,26 +41,26 @@ export const Menu = () => {
 
     return (
         <nav className={styles.menu}>
-            <a href="" className={styles.menu_link} title="Inicio">
+            <Link to="/" className={styles.menu_link} title="Inicio">
                 <HomeIcon />
-            </a>
+            </Link>
 
-            <a href="" className={styles.menu_link} title="Histórico">
+            <Link to="/history" className={styles.menu_link} title="Histórico">
                 <HistoryIcon />
-            </a>
+            </Link>
 
-            <a href="" className={styles.menu_link} title="Configurações">
+            <Link to="/settings" className={styles.menu_link} title="Configurações">
                 <SettingsIcon />
-            </a>
+            </Link>
 
-            <a
-                href=""
+            <Link
+                to=""
                 className={styles.menu_link}
                 title="Mudar Tema"
                 onClick={handleChangeTheme}
             >
                 {nextThemeIcon[theme]}
-            </a>
+            </Link>
         </nav>
     );
 };
