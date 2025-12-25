@@ -1,11 +1,12 @@
 import { TimerIcon } from "lucide-react";
 import styles from "./styles.module.css";
+import { Link } from "../Link";
 
 export const Logo = () => (
     <div className={styles.logo}>
-        <a href="" className={styles.logo_link}>
+        <Link to="/" className={styles.logo_link}>
             <TimerIcon/>
             <span>Chronos</span>
-        </a>
+        </Link>
     </div>
 );

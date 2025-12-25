@@ -1,6 +1,7 @@
 import { Container } from "../../components/Container";
 import { GenericHtml } from "../../components/GenericHtml";
 import { Heading } from "../../components/Heading";
+import { Link } from "../../components/Link";
 import { PageTemplate } from "../../templates/PageTemplate";
 
 export const NotFound = () => (
@@ -16,8 +17,8 @@ export const NotFound = () => (
                 </p>
                 <p>
                     Mas calma, você não está perdido no espaço (ainda). Dá pra
-                    voltar em segurança para a <a href="/">página principal</a>{" "}
-                    ou <a href="/history">para o histórico</a> — ou pode ficar
+                    voltar em segurança para a <Link to="/">página principal</Link>{" "}
+                    ou <Link to="/history">para o histórico</Link> — ou pode ficar
                     por aqui e fingir que achou uma página secreta que só os
                     exploradores mais legais conseguem acessar. 🧭✨
                 </p>

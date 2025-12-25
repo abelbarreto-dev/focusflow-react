@@ -5,10 +5,10 @@ import {
     SettingsIcon,
     SunIcon,
 } from "lucide-react";
+import { Link } from "../Link";
 import { useEffect, useState } from "react";
 
 import styles from "./styles.module.css";
-import { Link } from "react-router";
 
 type Themes = "dark" | "light";
 
