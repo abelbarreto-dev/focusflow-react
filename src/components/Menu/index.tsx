@@ -5,8 +5,9 @@ import {
     SettingsIcon,
     SunIcon,
 } from "lucide-react";
-import { Link } from "../Link";
 import { useEffect, useState } from "react";
+
+import { RouterLink } from "../RouterLink";
 
 import styles from "./styles.module.css";
 
@@ -41,26 +42,26 @@ export const Menu = () => {
 
     return (
         <nav className={styles.menu}>
-            <Link to="/" className={styles.menu_link} title="Inicio">
+            <RouterLink href="/" className={styles.menu_link} title="Inicio">
                 <HomeIcon />
-            </Link>
+            </RouterLink>
 
-            <Link to="/history" className={styles.menu_link} title="Histórico">
+            <RouterLink href="/history" className={styles.menu_link} title="Histórico">
                 <HistoryIcon />
-            </Link>
+            </RouterLink>
 
-            <Link to="/settings" className={styles.menu_link} title="Configurações">
+            <RouterLink href="/settings" className={styles.menu_link} title="Configurações">
                 <SettingsIcon />
-            </Link>
+            </RouterLink>
 
-            <Link
-                to=""
+            <RouterLink
+                href=""
                 className={styles.menu_link}
                 title="Mudar Tema"
                 onClick={handleChangeTheme}
             >
                 {nextThemeIcon[theme]}
-            </Link>
+            </RouterLink>
         </nav>
     );
 };
