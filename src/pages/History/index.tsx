@@ -1,12 +1,16 @@
 import { TrashIcon } from "lucide-react";
+import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { Heading } from "../../components/Heading";
 import { PageTemplate } from "../../templates/PageTemplate";
 import { Container } from "../../components/Container";
 import { Button } from "../../components/Button";
 
 import styles from "./styles.module.css";
+import { getTaskType } from "../../utils/getTaskType";
 
 export const History = () => {
+    const { state } = useTaskContext();
+
     return (
         <PageTemplate>
             <Container>
@@ -38,16 +42,14 @@ export const History = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {Array.from({ length: 20 }).map((_, index) => {
-                                return (
-                                    <tr key={`line-table_${index}`}>
-                                        <td>nome_{index + 1}</td>
-                                        <td>nome_{index + 1}</td>
-                                        <td>nome_{index + 1}</td>
-                                        <td>nome_{index + 1}</td>
-                                        <td>nome_{index + 1}</td>
-                                    </tr>
-                                );
+                            {state.tasks.map(task => {
+                                return (<tr key={`task-${task.id}`}>
+                                    <td>{task.name}</td>
+                                    <td>{task.duration}min</td>
+                                    <td>{new Date(task.startDate).toISOString()}</td>
+                                    <td>{task.interruptDate}</td>
+                                    <td>{getTaskType(task.type)}</td>
+                                </tr>);
                             })}
                         </tbody>
                     </table>
