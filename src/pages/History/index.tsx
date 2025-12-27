@@ -8,22 +8,27 @@ import { Button } from "../../components/Button";
 import { getTaskType } from "../../utils/getTaskType";
 import { getFormatDate } from "../../utils/getFormatDate";
 import { getTaskStatus } from "../../utils/getTaskSratus";
-import { useReducer } from "react";
+import { useState } from "react";
 import { getSortTasks } from "../../utils/getSortTasks";
-import type { TaskModel } from "../../models/TaskModel";
 
 import styles from "./styles.module.css";
 
 export const History = () => {
     const { state } = useTaskContext();
-    const [tasksData] = useReducer(
-        (
-            tasks: TaskModel[] = state.tasks,
-            attrOps = "task",
-            reverse: boolean = false,
-        ) => getSortTasks(tasks, attrOps, reverse),
-        getSortTasks(state.tasks, "task", false),
+    const [reverse, setReverse] = useState<boolean>(true);
+    const [sortTasks, setSortTasks] = useState(() =>
+        getSortTasks(state.tasks, "date", true),
     );
+
+    const handleSortTask = (column: "task" | "duration" | "date" | "type") => {
+        const revert = !reverse;
+
+        const data = getSortTasks(sortTasks || [], column, revert);
+
+        setReverse(revert);
+
+        setSortTasks(data);
+    };
 
     return (
         <PageTemplate>
@@ -48,30 +53,53 @@ export const History = () => {
                     <table>
                         <thead>
                             <tr>
-                                <th>Tarefa</th>
-                                <th>Duração</th>
-                                <th>Data</th>
-                                <th>Status</th>
-                                <th>Tipo</th>
+                                <th
+                                    className={styles.thSort}
+                                    onClick={() => handleSortTask("task")}
+                                >
+                                    Tarefa ↕
+                                </th>
+                                <th
+                                    className={styles.thSort}
+                                    onClick={() => handleSortTask("duration")}
+                                >
+                                    Duração ↕
+                                </th>
+                                <th
+                                    className={styles.thSort}
+                                    onClick={() => handleSortTask("date")}
+                                >
+                                    Data ↕
+                                </th>
+                                <th className={styles.thSort}>Status</th>
+                                <th
+                                    className={styles.thSort}
+                                    onClick={() => handleSortTask("type")}
+                                >
+                                    Tipo ↕
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {tasksData && tasksData.map(task => {
-                                return (
-                                    <tr key={`task-${task.id}`}>
-                                        <td>{task.name}</td>
-                                        <td>{task.duration}min</td>
-                                        <td>{getFormatDate(task.startDate)}</td>
-                                        <td>
-                                            {getTaskStatus(
-                                                task,
-                                                state.activeTask,
-                                            )}
-                                        </td>
-                                        <td>{getTaskType(task.type)}</td>
-                                    </tr>
-                                );
-                            })}
+                            {sortTasks &&
+                                sortTasks.map(task => {
+                                    return (
+                                        <tr key={`task-${task.id}`}>
+                                            <td>{task.name}</td>
+                                            <td>{task.duration}min</td>
+                                            <td>
+                                                {getFormatDate(task.startDate)}
+                                            </td>
+                                            <td>
+                                                {getTaskStatus(
+                                                    task,
+                                                    state.activeTask,
+                                                )}
+                                            </td>
+                                            <td>{getTaskType(task.type)}</td>
+                                        </tr>
+                                    );
+                                })}
                         </tbody>
                     </table>
                 </div>

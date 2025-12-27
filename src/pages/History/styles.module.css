@@ -35,3 +35,12 @@
     width: 2rem;
     height: 2rem;
 }
+
+.thSort {
+    cursor: pointer;
+    transition: all 100ms ease-in-out;
+}
+
+.thSort:hover {
+    filter: brightness(80%);
+}

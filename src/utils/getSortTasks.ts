@@ -1,6 +1,6 @@
 import type { TaskModel } from "../models/TaskModel";
 
-type SortOpps = "task" | "duration" | "date" | "status" | "type";
+type SortOpps = "task" | "duration" | "date" | "type";
 
 export const getSortTasks = (
     tasks: TaskModel[],
@@ -20,8 +20,6 @@ export const getSortTasks = (
         switch (attrSort) {
             case "task":
                 return compareString(a.name, b.name);
-            case "status":
-                return compareString(a.status, b.status);
             case "type":
                 return compareString(a.type, b.type);
             case "duration":
