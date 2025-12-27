@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TrashIcon } from "lucide-react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { Heading } from "../../components/Heading";
@@ -22,7 +22,14 @@ export const History = () => {
         getSortTasks(state.tasks, "date", true),
     );
     const [reload, setReload] = useState<boolean>(false);
-    
+
+    useEffect(() => {
+        return () => {
+            showMessage.dismiss();
+            setReload(false);
+        };
+    }, [reload]);
+
     const closeComponent = (reason: boolean) => {
         setReload(reason);
 
