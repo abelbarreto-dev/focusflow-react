@@ -6,6 +6,7 @@ type InputTextProps = {
     labelText: string;
     disabled?: boolean;
     required?: boolean;
+    placeHolder?: string;
     ref?: Ref<HTMLInputElement>;
     defaultValue?: string;
     value?: string;
@@ -15,6 +16,7 @@ type InputTextProps = {
 export const InputText = ({
     id,
     labelText,
+    placeHolder,
     disabled,
     required,
     defaultValue,
@@ -27,7 +29,7 @@ export const InputText = ({
             <label htmlFor={id}>{labelText}</label>
             <input
                 className={styles.input}
-                placeholder="Nome da tarefa"
+                placeholder={placeHolder}
                 id={id}
                 type="text"
                 defaultValue={defaultValue}

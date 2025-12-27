@@ -75,6 +75,7 @@ export const Form = () => {
                     ref={taskNameInput}
                     disabled={!!state.activeTask}
                     defaultValue={lastTaskName}
+                    placeHolder={"Nome da Tarefa"}
                 />
             </div>
 
