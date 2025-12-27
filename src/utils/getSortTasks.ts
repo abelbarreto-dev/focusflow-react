@@ -3,7 +3,7 @@ import type { TaskModel } from "../models/TaskModel";
 type SortOpps = "task" | "duration" | "date" | "type";
 
 export const getSortTasks = (
-    tasks: TaskModel[],
+    tasks: TaskModel[] | null | [],
     attrSort: SortOpps,
     reverse = false,
 ) => {

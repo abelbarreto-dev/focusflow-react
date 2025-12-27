@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { TrashIcon } from "lucide-react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { Heading } from "../../components/Heading";
@@ -8,13 +9,13 @@ import { Button } from "../../components/Button";
 import { getTaskType } from "../../utils/getTaskType";
 import { getFormatDate } from "../../utils/getFormatDate";
 import { getTaskStatus } from "../../utils/getTaskSratus";
-import { useState } from "react";
+import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
 import { getSortTasks } from "../../utils/getSortTasks";
 
 import styles from "./styles.module.css";
 
 export const History = () => {
-    const { state } = useTaskContext();
+    const { state, dispatch } = useTaskContext();
     const [reverse, setReverse] = useState<boolean>(true);
     const [sortTasks, setSortTasks] = useState(() =>
         getSortTasks(state.tasks, "date", true),
@@ -26,6 +27,16 @@ export const History = () => {
         const data = getSortTasks(sortTasks || [], column, revert);
 
         setReverse(revert);
+
+        setSortTasks(data);
+    };
+
+    const handleClearHistory = () => {
+        if (!confirm("Tem certeza?")) return;
+
+        dispatch({ type: TaskActionTypes.CLEAR_STATE });
+
+        const data = getSortTasks([], "date", true);
 
         setSortTasks(data);
     };
@@ -43,6 +54,7 @@ export const History = () => {
                             title={"Limpar Todo o Histórico"}
                             icon={<TrashIcon />}
                             color={"red"}
+                            onClick={handleClearHistory}
                         />
                     </span>
                 </Heading>

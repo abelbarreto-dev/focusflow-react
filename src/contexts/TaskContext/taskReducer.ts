@@ -1,6 +1,7 @@
 import type { TaskStateModel } from "../../models/TaskStateModel";
 import { getNextCycle } from "../../utils/getNextCycle";
 import { getTimeFormated } from "../../utils/getTimeFormated";
+import { initialTaskStateData } from "./initialTaskData";
 import { TaskActionTypes, type TaskActionModel } from "./taskActions";
 
 export const taskReducer = (
@@ -56,6 +57,9 @@ export const taskReducer = (
                     return task;
                 }),
             };
+        }
+        case TaskActionTypes.CLEAR_STATE: {
+            return {...initialTaskStateData};
         }
         default:
             return { ...state };
