@@ -58,10 +58,10 @@ export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
 
         if (!state.activeTask) {
             worker.terminate();
-            document.title = "Chronos Pomodoro";
+            document.title = "FocusFlow";
         }
         else
-            document.title = `${state.formatedSecondsRemaining} - Chronos Pomodoro`;
+            document.title = `${state.formatedSecondsRemaining} - FocusFlow`;
 
         worker.postMessage(state);
     }, [worker, state]);

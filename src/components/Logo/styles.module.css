@@ -14,7 +14,7 @@
     font-size: 4.2rem;
     font-weight: bold;
     text-decoration: none;
-    color: var(--primary);
+    color: var(--info);
     transition: all 250ms ease-in-out;
 }
 

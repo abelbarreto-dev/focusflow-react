@@ -42,15 +42,30 @@ export const Menu = () => {
 
     return (
         <nav className={styles.menu}>
-            <RouterLink href="/" className={styles.menu_link} title="Inicio">
+            <RouterLink
+                href="/"
+                className={styles.menu_link}
+                title="Inicio"
+                aria-label="Inicio"
+            >
                 <HomeIcon />
             </RouterLink>
 
-            <RouterLink href="/history" className={styles.menu_link} title="Histórico">
+            <RouterLink
+                href="/history"
+                className={styles.menu_link}
+                title="Histórico"
+                aria-label="Histórico"
+            >
                 <HistoryIcon />
             </RouterLink>
 
-            <RouterLink href="/settings" className={styles.menu_link} title="Configurações">
+            <RouterLink
+                href="/settings"
+                className={styles.menu_link}
+                title="Configurações"
+                aria-label="Configurações"
+            >
                 <SettingsIcon />
             </RouterLink>
 
@@ -58,6 +73,7 @@ export const Menu = () => {
                 href=""
                 className={styles.menu_link}
                 title="Mudar Tema"
+                aria-label="Mudar Tema"
                 onClick={handleChangeTheme}
             >
                 {nextThemeIcon[theme]}

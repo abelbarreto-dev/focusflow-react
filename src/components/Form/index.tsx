@@ -98,7 +98,7 @@ export const Form = () => {
                         title="Iniciar Nova Tarefa"
                         type="submit"
                         icon={<PlayCircleIcon />}
-                        color="green"
+                        color="blue"
                     />
                 ) : (
                     <Button

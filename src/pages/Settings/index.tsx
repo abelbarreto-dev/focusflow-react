@@ -7,7 +7,7 @@ import { SaveIcon } from "lucide-react";
 
 import styles from "./styles.module.css";
 import { InputNumber } from "../../components/InputNumber";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
 import type { TaskStateModel } from "../../models/TaskStateModel";
@@ -19,6 +19,10 @@ export const Settings = () => {
     const workTime = useRef<HTMLInputElement>(null);
     const shortBreakTime = useRef<HTMLInputElement>(null);
     const longBreakTime = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        document.title = "Configurações";
+    }, []);
 
     const handleUpdatePomodoro = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -41,7 +45,7 @@ export const Settings = () => {
                 workTime: config.workTime || 0,
                 shortBreakTime: config.shortBreakTime || 0,
                 longBreakTime: config.longBreakTime || 0,
-            }
+            },
         };
 
         localStorage.setItem("state", JSON.stringify(newState));

@@ -34,3 +34,7 @@
     background: var(--error);
     color: var(--text-over-error);
 }
+
+.blue {
+    background: var(--info);
+}

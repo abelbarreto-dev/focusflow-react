@@ -6,7 +6,7 @@ type ButtonProps = {
     type: "submit" | "button";
     ariaLabel: string;
     title: string;
-    color?: "green" | "red";
+    color?: "green" | "red" | "blue";
     disabled?: boolean;
     onClick?: () => void;
 };

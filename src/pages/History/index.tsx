@@ -24,6 +24,10 @@ export const History = () => {
     const [reload, setReload] = useState<boolean>(false);
 
     useEffect(() => {
+        document.title = "Histórico Pomodoro";
+    }, []);
+
+    useEffect(() => {
         return () => {
             showMessage.dismiss();
             setReload(false);

@@ -6,7 +6,7 @@ export const Logo = () => (
     <div className={styles.logo}>
         <RouterLink href="/" className={styles.logo_link}>
             <TimerIcon/>
-            <span>Chronos</span>
+            <span>FocusFlow</span>
         </RouterLink>
     </div>
 );
