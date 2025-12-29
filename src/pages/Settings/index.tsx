@@ -115,6 +115,7 @@ export const Settings = () => {
                             icon={<SaveIcon />}
                             ariaLabel={"Salvar Configurações"}
                             title={"Salvar Configurações"}
+                            color={"blue"}
                         />
                     </div>
                 </form>
