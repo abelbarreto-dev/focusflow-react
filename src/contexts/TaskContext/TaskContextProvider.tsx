@@ -43,8 +43,8 @@ export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
                 });
 
                 worker.terminate();
-            } else {
-                if (playBeepRef.current) playBeepRef.current();
+            }
+            else {
                 dispatch({
                     type: TaskActionTypes.THE_FINAL_COUNT_DOWN,
                     payload: { secondsReamaining: countDownSeconds },
@@ -69,6 +69,11 @@ export const TaskContextProvider = ({ children }: TaskContextProviderProps) => {
     useEffect(() => {
         if (state.activeTask && playBeepRef.current === null) {
             playBeepRef.current = loadBeep();
+        }
+        else if (!state.activeTask) {
+            playBeepRef.current = loadBeep();
+            playBeepRef.current();
+            playBeepRef.current = null;
         }
         else {
             playBeepRef.current = null;
